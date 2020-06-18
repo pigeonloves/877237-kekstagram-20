@@ -30,17 +30,14 @@ var getRandomInt = function (min, max) {
 var getSeveralRandom = function (min, max, num) {
   var arr = [];
   var res = [];
-
-  for (var i = min; i <= max; i++ ) {
+  for (var i = min; i <= max; i++) {
     arr.push(i);
-  };
-
+  }
   for (i = 0; i < num; i++) {
     res.push(arr.splice(Math.floor(Math.random() * (arr.length)), 1)[0]);
-  };
-
+  }
   return res;
-}
+};
 
 var picturesAddress = getSeveralRandom(1, DATA.count, DATA.count);
 
@@ -52,12 +49,11 @@ var getComments = function () {
       avatar: DATA.avatar[getRandomInt(0, DATA.avatar.length - 1)],
       message: DATA.message[getRandomInt(0, DATA.message.length - 1)],
       name: DATA.name[getRandomInt(0, DATA.name.length - 1)]
-    }
+    };
     commentsArr.push(newComment);
-  };
+  }
 
   commentsArr.length = Math.round(Math.random() * commentsArr.length);
-
   return commentsArr;
 };
 
@@ -75,7 +71,7 @@ var getPictures = function () {
 
   for (var i = 0; i < DATA.count; i++) {
     array.push(getPicture(i + 1));
-  };
+  }
 
   return array;
 };
@@ -101,7 +97,7 @@ var renderPictures = function () {
 
   for (var i = 0; i < pictures.length; i++) {
     fragment.appendChild(getFillPicture(pictures[i]));
-  };
+  }
 
   picturesBlock.appendChild(fragment);
 };
