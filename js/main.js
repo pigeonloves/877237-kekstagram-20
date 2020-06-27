@@ -27,6 +27,11 @@ var getRandomInt = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+<<<<<<< HEAD
+=======
+// console.log(getRandomInt(1, 6));
+
+>>>>>>> 5171d1b61791c0b2efe52359420820c3213e806e
 var getSeveralRandom = function (min, max, num) {
   var arr = [];
   var res = [];
