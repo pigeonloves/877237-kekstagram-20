@@ -27,11 +27,6 @@ var getRandomInt = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-<<<<<<< HEAD
-=======
-// console.log(getRandomInt(1, 6));
-
->>>>>>> 5171d1b61791c0b2efe52359420820c3213e806e
 var getSeveralRandom = function (min, max, num) {
   var arr = [];
   var res = [];
@@ -114,6 +109,7 @@ var uploaderPicture = picturesBlock.querySelector('#upload-file');
 var editorPicture = picturesBlock.querySelector('.img-upload__overlay');
 var closeEditorPicture = picturesBlock.querySelector('#upload-cancel');
 var body = document.querySelector('body');
+var esc = 'Escape';
 
 var openPopup = function () {
   editorPicture.classList.remove('hidden');
@@ -129,7 +125,7 @@ var closePopup = function () {
 };
 
 var popupEscPressHandler = function (evt) {
-  if (evt.key === 'Escape' && tagInput !== document.activeElement) {
+  if (evt.key === esc && tagInput !== document.activeElement && commentInput !== document.activeElement) {
     evt.preventDefault();
     closePopup();
   }
@@ -143,7 +139,6 @@ closeEditorPicture.addEventListener('click', function () {
   closePopup();
 });
 
-
 // Ползунок
 // var effectLine = picturesBlock.querySelector('.effect-level__line');
 // var effectScale = picturesBlock.querySelector('.effect-level__pin');
@@ -153,6 +148,8 @@ closeEditorPicture.addEventListener('click', function () {
 // });
 
 // Валидация хеш-тегов
+var TAG_MIN_LENGTH = 2;
+var TAG_MAX_LENGTH = 20;
 var tagInput = picturesBlock.querySelector('.text__hashtags');
 
 var isDublicate = function (item, index, arr) {
@@ -173,9 +170,9 @@ tagInput.addEventListener('input', function () {
       tagErrors.push('Хештег должен начинаться с «#»!');
     } else if (!tagSymbol.test(splittedTags[i])) {
       tagErrors.push('Хештег не должен содержать спецсимволы!');
-    } else if (splittedTags[i].length < 2) {
+    } else if (splittedTags[i].length < TAG_MIN_LENGTH) {
       tagErrors.push('Хештег должен состоять минимум из 2-х символов!');
-    } else if (splittedTags[i].length >= 20) {
+    } else if (splittedTags[i].length >= TAG_MAX_LENGTH) {
       tagErrors.push('Максимальная длина хештега не должна превышать 20 символов!');
     }
   }
@@ -188,5 +185,19 @@ tagInput.addEventListener('input', function () {
     tagInput.setCustomValidity(tagErrors[0]);
   } else {
     tagInput.setCustomValidity('');
+  }
+});
+
+// Валидация комментариев
+var COMMENT_MAX_LENGTH = 140;
+var commentInput = picturesBlock.querySelector('.text__description');
+
+commentInput.addEventListener('input', function () {
+  var commentLength = commentInput.value.length;
+
+  if (commentLength > COMMENT_MAX_LENGTH) {
+    commentInput.setCustomValidity('Максимальная длина комментария не должна превышать 140 символов!' + ' Удалите лишние ' + (commentLength - COMMENT_MAX_LENGTH) +' симв.');
+  } else {
+    commentInput.setCustomValidity('');
   }
 });
