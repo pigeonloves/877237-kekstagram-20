@@ -196,7 +196,7 @@ commentInput.addEventListener('input', function () {
   var commentLength = commentInput.value.length;
 
   if (commentLength > COMMENT_MAX_LENGTH) {
-    commentInput.setCustomValidity('Максимальная длина комментария не должна превышать 140 символов!' + ' Удалите лишние ' + (commentLength - COMMENT_MAX_LENGTH) +' симв.');
+    commentInput.setCustomValidity('Максимальная длина комментария не должна превышать 140 символов!' + ' Удалите лишние ' + (commentLength - COMMENT_MAX_LENGTH) + ' симв.');
   } else {
     commentInput.setCustomValidity('');
   }
