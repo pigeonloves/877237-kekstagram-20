@@ -163,7 +163,6 @@ tagInput.addEventListener('input', function () {
     return item !== '';
   });
 
-
   for (var i = 0; i < splittedTags.length; i++) {
     if (splittedTags[i][0] !== '#') {
       tagErrors.push('Хештег должен начинаться с «#»!');
@@ -174,11 +173,12 @@ tagInput.addEventListener('input', function () {
     } else if (splittedTags[i].length >= 20) {
       tagErrors.push('Максимальная длина хештега не должна превышать 20 символов!');
     }
-
   }
+
   if (splittedTags.some(isDublicate)) {
     tagErrors.push('Хештеги не должны повторяться!');
   }
+
   if (tagErrors.length) {
     tagInput.setCustomValidity(tagErrors[0]);
   } else {
