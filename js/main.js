@@ -115,7 +115,6 @@ var body = document.querySelector('body');
 uploaderPicture.addEventListener('change', function () {
   editorPicture.classList.remove('hidden');
   body.classList.add('modal-open');
-  // console.log(uploadFile);
 });
 
 closeEditorPicture.addEventListener('click', function () {
@@ -156,7 +155,6 @@ tagInput.addEventListener('input', function () {
     } else if (splittedTags.length > 20) {
       tagInput.setCustomValidity('Максимальная длина хештега на должна превышать 25 символов!');
     } else if (!tagSymbolTest) {
-      console.log(!tagSymbolTest);
       tagInput.setCustomValidity('Хештег содержит недопустимые символы!');
     } else {
       tagInput.setCustomValidity('');
