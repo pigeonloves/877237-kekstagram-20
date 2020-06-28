@@ -109,7 +109,7 @@ var uploaderPicture = picturesBlock.querySelector('#upload-file');
 var editorPicture = picturesBlock.querySelector('.img-upload__overlay');
 var closeEditorPicture = picturesBlock.querySelector('#upload-cancel');
 var body = document.querySelector('body');
-var esc = 'Escape';
+var ESC = 'Escape';
 
 var openPopup = function () {
   editorPicture.classList.remove('hidden');
@@ -125,7 +125,7 @@ var closePopup = function () {
 };
 
 var popupEscPressHandler = function (evt) {
-  if (evt.key === esc && tagInput !== document.activeElement && commentInput !== document.activeElement) {
+  if (evt.key === ESC && tagInput !== document.activeElement && commentInput !== document.activeElement) {
     evt.preventDefault();
     closePopup();
   }
@@ -172,7 +172,7 @@ tagInput.addEventListener('input', function () {
       tagErrors.push('Хештег не должен содержать спецсимволы!');
     } else if (splittedTags[i].length < TAG_MIN_LENGTH) {
       tagErrors.push('Хештег должен состоять минимум из 2-х символов!');
-    } else if (splittedTags[i].length >= TAG_MAX_LENGTH) {
+    } else if (splittedTags[i].length > TAG_MAX_LENGTH) {
       tagErrors.push('Максимальная длина хештега не должна превышать 20 символов!');
     }
   }
