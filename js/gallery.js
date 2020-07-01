@@ -26,7 +26,6 @@
 
     for (var i = 0; i < pictures.length; i++) {
       fragment.appendChild(getFillPicture(pictures[i]));
-      console.log(getFillPicture(pictures[i]));
     }
 
     picturesBlock.appendChild(fragment);
