@@ -4,7 +4,7 @@
   // Валидация хеш-тегов
   var TAG_MIN_LENGTH = 2;
   var TAG_MAX_LENGTH = 20;
-  var picturesBlock = window.gallery.picturesBlock;
+  var picturesBlock = document.querySelector('.pictures');
   var tagInput = picturesBlock.querySelector('.text__hashtags');
 
   var isDublicate = function (item, index, arr) {

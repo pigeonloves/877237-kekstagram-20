@@ -1,9 +1,9 @@
 'use strict';
 
 (function () {
-  var picturesBlock = window.gallery.picturesBlock;
   var tagInput = window.validation.tagInput;
   var commentInput = window.validation.commentInput;
+  var picturesBlock = document.querySelector('.pictures');
   var uploaderPicture = picturesBlock.querySelector('#upload-file');
   var editorPicture = picturesBlock.querySelector('.img-upload__overlay');
   var closeEditorPicture = picturesBlock.querySelector('#upload-cancel');

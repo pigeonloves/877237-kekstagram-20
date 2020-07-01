@@ -1,7 +1,6 @@
 'use strict';
 
 (function () {
-
   var getRandomInt = function (min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -21,7 +20,7 @@
     return res;
   };
 
-  window.random = {
+  window.utils = {
     getRandomInt: getRandomInt,
     getSeveralRandom: getSeveralRandom,
   };

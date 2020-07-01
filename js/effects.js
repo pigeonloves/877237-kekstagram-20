@@ -2,7 +2,7 @@
 
 (function () {
   // Ползунок
-  // var picturesBlock = window.gallery.picturesBlock;
+  // var picturesBlock = document.querySelector('.pictures');
   // var effectLine = picturesBlock.querySelector('.effect-level__line');
   // var effectScale = picturesBlock.querySelector('.effect-level__pin');
 
