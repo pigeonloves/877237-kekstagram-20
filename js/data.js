@@ -17,10 +17,6 @@
 
   var getRandomInt = window.utils.getRandomInt;
   var getSeveralRandom = window.utils.getSeveralRandom;
-  var pictureTemplate = document.querySelector('#picture')
-    .content
-    .querySelector('.picture');
-
   var picturesAddress = getSeveralRandom(1, DATA.count, DATA.count);
 
   var getComments = function () {
@@ -58,25 +54,6 @@
     return array;
   };
 
-  var pictures = getPictures();
-
-  var getFillPicture = function (data) {
-    var element = pictureTemplate.cloneNode(true);
-    var img = element.querySelector('.picture__img');
-    var comments = element.querySelector('.picture__comments');
-    var likes = element.querySelector('.picture__likes');
-
-    img.src = data.url;
-    img.alt = data.description;
-    comments.textContent = data.comments.length;
-    likes.textContent = data.likes;
-
-    return element;
-  };
-
-  window.data = {
-    getFillPicture: getFillPicture,
-    pictures: pictures,
-  }
+  window.data = getPictures();
 
 })();
