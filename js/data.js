@@ -3,14 +3,11 @@
 (function () {
 
   var pictures = [];
-  var onError = function (message) {
-    console.error(message);
-  };
+  var onError = function () {};
 
   var onSuccess = function (data) {
     pictures = data;
-    console.log(data, pictures);
-    window.gallery.render(data);
+    window.gallery.render(pictures);
   };
 
   var loadData = function () {
