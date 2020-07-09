@@ -22,15 +22,12 @@
 
   var renderPictures = function (data) {
     var fragment = document.createDocumentFragment();
-    console.log(data);
     for (var i = 0; i < data.length; i++) {
       fragment.appendChild(getFillPicture(data[i]));
     }
 
     picturesBlock.appendChild(fragment);
   };
-
-  renderPictures();
 
   window.gallery = {
     render: renderPictures
