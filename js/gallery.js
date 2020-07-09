@@ -2,7 +2,6 @@
 
 (function () {
   var picturesBlock = document.querySelector('.pictures');
-  var pictures = window.data;
   var pictureTemplate = document.querySelector('#picture')
     .content
     .querySelector('.picture');
@@ -21,16 +20,20 @@
     return element;
   };
 
-  var renderPictures = function () {
+  var renderPictures = function (data) {
     var fragment = document.createDocumentFragment();
-
-    for (var i = 0; i < pictures.length; i++) {
-      fragment.appendChild(getFillPicture(pictures[i]));
+    console.log(data);
+    for (var i = 0; i < data.length; i++) {
+      fragment.appendChild(getFillPicture(data[i]));
     }
 
     picturesBlock.appendChild(fragment);
   };
 
   renderPictures();
+
+  window.gallery = {
+    render: renderPictures
+  };
 
 })();

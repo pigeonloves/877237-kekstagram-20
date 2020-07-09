@@ -3,7 +3,16 @@
 (function () {
   var SUCCESS_STATUS_CODE = 200;
   var TIMEOUT = 10000;
-  var load = function (url, onSuccess, onError) {
+  var URL = 'https://javascript.pages.academy/kekstagram/data';
+  var messageOfError = {
+    400: 'Неверный запрос',
+    401: 'Пользователь не авторизирован',
+    403: 'Доступ запрещен',
+    404: 'Ничего не найдено',
+    500: 'Внутренняя ошибка сервера'
+  };
+
+  var createRequest = function (onSuccess, onError) {
     var xhr = new XMLHttpRequest();
 
     xhr.responseType = 'json';
@@ -12,7 +21,7 @@
       if (xhr.status === SUCCESS_STATUS_CODE) {
         onSuccess(xhr.response);
       } else {
-        onError('Cтатус ответа: ' + xhr.status + ' ' + xhr.statusText);
+        onError('Cтатус ответа: ' + xhr.status + ' ' + messageOfError[xhr.status]);
       }
     });
 
@@ -25,19 +34,16 @@
     });
 
     xhr.timeout = TIMEOUT;
+    return xhr;
+  };
 
-    xhr.open('GET', url);
+  var load = function (onSuccess, onError) {
+    var xhr = createRequest(onSuccess, onError);
+    xhr.open('GET', URL);
     xhr.send();
   };
 
-  var onError = function (message) {
-    console.error(message);
+  window.backend = {
+    load: load,
   };
-
-  var onSuccess = function (data) {
-    console.log(data);
-  };
-
-  load('https://javascript.pages.academy/kekstagram/data', onSuccess, onError);
-
 })();
