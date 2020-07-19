@@ -1,24 +1,33 @@
 'use strict';
 
 (function () {
-  var pictureFilter = document.querySelector('.img-filters').classList.remove('img-filters--inactive');
 
-  // var filterDefault = pictureFilter.querySelector('#filter-default');
-  // var filterRandom = pictureFilter.querySelector('#filter-random');
-  // var filterDiscussed = pictureFilter.querySelector('#filter-discussed');
+  var filterRandom = function (data) {
+    return data.sort(function () {
+      return window.utils.getRandomInt(-1, 1);
+    }).slice(0, 10);
+  };
+  var filterComments = function (data) {
+    return data.sort(function (a, b) {
+      return b.comments.length - a.comments.length;
+    });
+  };
 
-  // filterRandom.addEventListener('click', function () {
-  //
-  // });
+  var filterData = function (data, filter) {
+    var copyData = data.slice();
+    switch (filter.id) {
+      case 'filter-default':
+        return copyData;
 
-  // filterDiscussed.addEventListener('click', function () {
-  //
-  // });
+      case 'filter-random':
+        return filterRandom(copyData);
 
-  // var onSuccess = function (data) {
-  //   pictures = data.slice().sort();
-  //   console.log(pictures);
-  //   window.gallery.render(pictures);
-  // };
+      case 'filter-discussed':
+        return filterComments(copyData);
+    }
+    return copyData;
+  };
+
+  window.filter = filterData;
 
 })();

@@ -29,8 +29,16 @@
     picturesBlock.appendChild(fragment);
   };
 
+  var removePictures = function () {
+    var pictures = picturesBlock.querySelectorAll('.picture');
+    pictures.forEach(function (picture) {
+      picture.remove();
+    });
+  };
+
   window.gallery = {
-    render: renderPictures
+    render: renderPictures,
+    remove: removePictures,
   };
 
 })();
