@@ -6,7 +6,7 @@
   var bigPictureComments = bigPicture.querySelector('.social__comments');
   var bigPictureComment = bigPicture.querySelector('.social__comment');
 
-  body.classList.add('modal-open')
+  body.classList.add('modal-open');
   bigPicture.classList.remove('hidden');
 
   bigPicture.querySelector('.social__comment-count').classList.add('hidden');
