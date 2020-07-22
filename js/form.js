@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  var ESC = 'Escape';
   var tagInput = window.validation.tagInput;
   var commentInput = window.validation.commentInput;
   var picturesBlock = document.querySelector('.pictures');
@@ -8,7 +9,6 @@
   var editorPicture = picturesBlock.querySelector('.img-upload__overlay');
   var closeEditorPicture = picturesBlock.querySelector('#upload-cancel');
   var body = document.querySelector('body');
-  var ESC = 'Escape';
 
   var openPopup = function () {
     editorPicture.classList.remove('hidden');
