@@ -6,7 +6,7 @@
     .content
     .querySelector('.picture');
 
-  var getFillPicture = function (data) {
+  var getFillPicture = function (data, id) {
     var element = pictureTemplate.cloneNode(true);
     var img = element.querySelector('.picture__img');
     var comments = element.querySelector('.picture__comments');
@@ -16,6 +16,7 @@
     img.alt = data.description;
     comments.textContent = data.comments.length;
     likes.textContent = data.likes;
+    element.dataset.id = id;
 
     return element;
   };
@@ -23,7 +24,7 @@
   var renderPictures = function (data) {
     var fragment = document.createDocumentFragment();
     for (var i = 0; i < data.length; i++) {
-      fragment.appendChild(getFillPicture(data[i]));
+      fragment.appendChild(getFillPicture(data[i], i));
     }
 
     picturesBlock.appendChild(fragment);
