@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  var ESC = 'Escape';
+  // var ESC = 'Escape';
   var tagInput = window.validation.tagInput;
   var commentInput = window.validation.commentInput;
   var picturesBlock = document.querySelector('.pictures');
@@ -24,7 +24,7 @@
   };
 
   var popupEscPressHandler = function (evt) {
-    if (evt.key === ESC && tagInput !== document.activeElement && commentInput !== document.activeElement) {
+    if (evt.key === window.constans.ESC && tagInput !== document.activeElement && commentInput !== document.activeElement) {
       evt.preventDefault();
       closePopup();
     }

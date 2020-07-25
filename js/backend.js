@@ -1,9 +1,9 @@
 'use strict';
 
 (function () {
-  var SUCCESS_STATUS_CODE = 200;
-  var TIMEOUT = 10000;
-  var URL = 'https://javascript.pages.academy/kekstagram/data';
+  // var SUCCESS_STATUS_CODE = 200;
+  // var TIMEOUT = 10000;
+  // var URL = 'https://javascript.pages.academy/kekstagram/data';
   var messageOfError = {
     400: 'Неверный запрос',
     401: 'Пользователь не авторизирован',
@@ -18,7 +18,7 @@
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
-      if (xhr.status === SUCCESS_STATUS_CODE) {
+      if (xhr.status === window.constans.SUCCESS_STATUS_CODE) {
         onSuccess(xhr.response);
       } else {
         onError('Cтатус ответа: ' + xhr.status + ' ' + messageOfError[xhr.status]);
@@ -33,13 +33,13 @@
       onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
     });
 
-    xhr.timeout = TIMEOUT;
+    xhr.timeout = window.constans.TIMEOUT;
     return xhr;
   };
 
   var load = function (onSuccess, onError) {
     var xhr = createRequest(onSuccess, onError);
-    xhr.open('GET', URL);
+    xhr.open('GET', window.constans.URL);
     xhr.send();
   };
 

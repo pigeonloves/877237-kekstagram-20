@@ -41,7 +41,7 @@
   };
 
   var escPressHandler = function (evt) {
-    if (evt.key === 'Escape') {
+    if (evt.key === window.constans.ESC) {
       evt.preventDefault();
       closePreview();
     }
