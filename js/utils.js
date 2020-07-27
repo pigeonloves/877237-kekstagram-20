@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  // var DEBOUNCE_INTERVAL = 500;
+  var DEBOUNCE_INTERVAL = 500;
 
   var getRandomInt = function (min, max) {
     min = Math.ceil(min);
@@ -32,7 +32,7 @@
       }
       lastTimeout = window.setTimeout(function () {
         cb.apply(null, parameters);
-      }, window.constans.DEBOUNCE_INTERVAL);
+      }, DEBOUNCE_INTERVAL);
     };
   };
 
