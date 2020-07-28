@@ -9,7 +9,6 @@
     heat: 3
   };
   var picturesBlock = document.querySelector('.pictures');
-  // var effectLevelLine = picturesBlock.querySelector('.effect-level__line');
   var effectLevelPin = picturesBlock.querySelector('.effect-level__pin');
   var effectLevelDepth = picturesBlock.querySelector('.effect-level__depth');
 
@@ -38,10 +37,13 @@
   };
 
   var resetEffectsValue = function () {
-    // imgUploadPreview.classList.remove(imgUploadPreview.classList[1]);
+    imgUploadEffectLevel.classList.add('hidden');
     imgUploadPreview.style.filter = '';
-    scaleControlValue.value = '';
+    imgUploadPreview.style.transform = '';
+    scaleControlValue.value = 100 + '%';
   };
+
+  resetEffectsValue();
 
   var onEffectChange = function (evt) {
     var target = evt.target.closest('.effects__radio');
@@ -54,9 +56,8 @@
         effectLevelPin.style.left = 100 + '%';
         effectLevelDepth.style.width = 100 + '%';
         currentEffect = target.value;
+        imgUploadPreview.style.filter = Filters[currentEffect](MAX_VALUE_FILTERS[currentEffect]);
       }
-      // imgUploadPreview.classList.add('effects__preview--' + target.value);
-      imgUploadPreview.style.filter = Filters[currentEffect](MAX_VALUE_FILTERS[currentEffect]);
     }
   };
 

@@ -10,18 +10,6 @@
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  var getSeveralRandom = function (min, max, num) {
-    var arr = [];
-    var res = [];
-    for (var i = min; i <= max; i++) {
-      arr.push(i);
-    }
-    for (i = 0; i < num; i++) {
-      res.push(arr.splice(Math.floor(Math.random() * (arr.length)), 1)[0]);
-    }
-    return res;
-  };
-
   var debounce = function (cb) {
     var lastTimeout = null;
 
@@ -38,7 +26,6 @@
 
   window.utils = {
     getRandomInt: getRandomInt,
-    getSeveralRandom: getSeveralRandom,
     debounce: debounce
   };
 

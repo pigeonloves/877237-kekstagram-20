@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  var COMMENTS_LENGTH = 5;
   var body = document.querySelector('body');
   var bigPicture = document.querySelector('.big-picture');
   var bigPictureComments = bigPicture.querySelector('.social__comments');
@@ -20,29 +21,29 @@
   };
 
   var commentsLoaderHandler = function (comments, i) {
-    createComment(comments.slice(0, 5 * i));
+    createComment(comments.slice(0, COMMENTS_LENGTH * i));
   };
 
   var renderBigPicture = function (picture) {
     bigPicture.querySelector('.big-picture__img img').src = picture.url;
     bigPicture.querySelector('.likes-count').textContent = picture.likes;
     bigPicture.querySelector('.social__caption').textContent = picture.description;
-    createComment(picture.comments.slice(0, 5));
+    createComment(picture.comments.slice(0, COMMENTS_LENGTH));
 
-    if (picture.comments.length > 5) {
-      var countClick = Math.ceil(picture.comments.length % 5);
+    if (picture.comments.length > COMMENTS_LENGTH) {
+      var countClick = Math.ceil(picture.comments.length / COMMENTS_LENGTH);
       var index = 1;
       bigPicture.querySelector('.comments-count').textContent = picture.comments.length;
-      bigPicture.querySelector('.social__comments-count').classList.remove('hedden');
+      bigPicture.querySelector('.social__comment-count').classList.remove('hidden');
       commentsLoader.classList.remove('hidden');
     }
 
-    commentsLoader.addEventListener('click', () => {
-      index++
+    commentsLoader.addEventListener('click', function () {
+      index++;
       commentsLoaderHandler(picture.comments, index);
 
       if (countClick === index) {
-        bigPicture.querySelector('.social__comments-count').classList.add('hedden');
+        bigPicture.querySelector('.social__comment-count').classList.add('hidden');
         commentsLoader.classList.add('hidden');
       }
     });

@@ -6,7 +6,7 @@
     .content
     .querySelector('.picture');
 
-  var getFillPicture = function (data, id) {
+  var getFillPicture = function (data) {
     var element = pictureTemplate.cloneNode(true);
     var img = element.querySelector('.picture__img');
     var comments = element.querySelector('.picture__comments');
@@ -16,7 +16,11 @@
     img.alt = data.description;
     comments.textContent = data.comments.length;
     likes.textContent = data.likes;
-    element.dataset.id = id;
+
+    element.addEventListener('click', function (evt) {
+      evt.preventDefault();
+      window.preview.show(data);
+    });
 
     return element;
   };
