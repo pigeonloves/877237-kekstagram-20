@@ -39,7 +39,6 @@
   });
 
   var resetForm = function () {
-    window.effect.reset();
     imgUploadForm.reset();
     closePopup();
   };

@@ -27,9 +27,9 @@
 
   var renderPictures = function (data) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < data.length; i++) {
-      fragment.appendChild(getFillPicture(data[i], i));
-    }
+    data.forEach(function (it) {
+      fragment.appendChild(getFillPicture(it));
+    });
 
     picturesBlock.appendChild(fragment);
   };
