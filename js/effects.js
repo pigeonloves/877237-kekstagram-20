@@ -38,7 +38,7 @@
   };
 
   var resetEffectsValue = function () {
-    imgUploadPreview.classList.remove(imgUploadPreview.classList[1]);
+    // imgUploadPreview.classList.remove(imgUploadPreview.classList[1]);
     imgUploadPreview.style.filter = '';
     scaleControlValue.value = '';
   };
@@ -55,7 +55,8 @@
         effectLevelDepth.style.width = 100 + '%';
         currentEffect = target.value;
       }
-      imgUploadPreview.classList.add('effects__preview--' + target.value);
+      // imgUploadPreview.classList.add('effects__preview--' + target.value);
+      imgUploadPreview.style.filter = Filters[currentEffect](MAX_VALUE_FILTERS[currentEffect]);
     }
   };
 

@@ -17,16 +17,22 @@
 
   var scaleDownHandler = function () {
     var scaleValue = parseInt(scaleControlValue.value, 10);
-    var newValue = scaleValue - Scale.STEP >= Scale.MIN ? scaleValue - Scale.STEP : Scale.MIN;
-    imgUploadPreview.style.transform = 'scale(' + (newValue) / 100 + ')';
-    scaleControlValue.value = (newValue) + '%';
+
+    if (scaleValue > Scale.MIN) {
+      var newValue = scaleValue - Scale.STEP;
+      imgUploadPreview.style.transform = 'scale(' + (newValue) / 100 + ')';
+      scaleControlValue.value = (newValue) + '%';
+    }
   };
 
   var scaleUpHandler = function () {
     var scaleValue = parseInt(scaleControlValue.value, 10);
-    var newValue = scaleValue + Scale.STEP <= Scale.MAX ? scaleValue + Scale.STEP : Scale.MAX;
-    imgUploadPreview.style.transform = 'scale(' + (newValue) / 100 + ')';
-    scaleControlValue.value = (newValue) + '%';
+
+    if (scaleValue < Scale.MAX) {
+      var newValue = scaleValue + Scale.STEP;
+      imgUploadPreview.style.transform = 'scale(' + (newValue) / 100 + ')';
+      scaleControlValue.value = (newValue) + '%';
+    }
   };
 
   scaleControlSmaller.addEventListener('click', scaleDownHandler);

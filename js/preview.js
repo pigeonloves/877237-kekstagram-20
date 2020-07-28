@@ -19,22 +19,33 @@
     return newComment;
   };
 
-  var commentsLoaderHandler = function (picture) {
-    // console.log(picture.comments);
-    var clicks = Math.ceil(picture.comments.length % 5);
-    for (var i = 0; i <= clicks; i++) {
-      createComment(picture.comments.slice(0, 5 * i));
-    }
+  var commentsLoaderHandler = function (comments, i) {
+    createComment(comments.slice(0, 5 * i));
   };
 
   var renderBigPicture = function (picture) {
     bigPicture.querySelector('.big-picture__img img').src = picture.url;
     bigPicture.querySelector('.likes-count').textContent = picture.likes;
-    bigPicture.querySelector('.comments-count').textContent = picture.comments.length;
     bigPicture.querySelector('.social__caption').textContent = picture.description;
     createComment(picture.comments.slice(0, 5));
-    commentsLoader.classList.remove('hidden');
-    commentsLoader.addEventListener('click', commentsLoaderHandler);
+
+    if (picture.comments.length > 5) {
+      var countClick = Math.ceil(picture.comments.length % 5);
+      var index = 1;
+      bigPicture.querySelector('.comments-count').textContent = picture.comments.length;
+      bigPicture.querySelector('.social__comments-count').classList.remove('hedden');
+      commentsLoader.classList.remove('hidden');
+    }
+
+    commentsLoader.addEventListener('click', () => {
+      index++
+      commentsLoaderHandler(picture.comments, index);
+
+      if (countClick === index) {
+        bigPicture.querySelector('.social__comments-count').classList.add('hedden');
+        commentsLoader.classList.add('hidden');
+      }
+    });
   };
 
   var createComment = function (comments) {
