@@ -36,17 +36,17 @@
       bigPicture.querySelector('.comments-count').textContent = picture.comments.length;
       bigPicture.querySelector('.social__comment-count').classList.remove('hidden');
       commentsLoader.classList.remove('hidden');
+
+      commentsLoader.addEventListener('click', function () {
+        index++;
+        commentsLoaderHandler(picture.comments, index);
+
+        if (countClick === index) {
+          bigPicture.querySelector('.social__comment-count').classList.add('hidden');
+          commentsLoader.classList.add('hidden');
+        }
+      });
     }
-
-    commentsLoader.addEventListener('click', function () {
-      index++;
-      commentsLoaderHandler(picture.comments, index);
-
-      if (countClick === index) {
-        bigPicture.querySelector('.social__comment-count').classList.add('hidden');
-        commentsLoader.classList.add('hidden');
-      }
-    });
   };
 
   var createComment = function (comments) {

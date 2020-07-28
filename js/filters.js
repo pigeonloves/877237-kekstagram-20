@@ -13,7 +13,7 @@
     });
   };
 
-  var filterData = function (data, filter) {
+  var filteredData = function (data, filter) {
     var copyData = data.slice();
     switch (filter.id) {
       case 'filter-default':
@@ -28,6 +28,6 @@
     return copyData;
   };
 
-  window.filter = filterData;
+  window.filter = filteredData;
 
 })();

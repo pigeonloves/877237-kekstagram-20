@@ -45,7 +45,7 @@
 
   resetEffectsValue();
 
-  var onEffectChange = function (evt) {
+  var effectChangeHandler = function (evt) {
     var target = evt.target.closest('.effects__radio');
     resetEffectsValue();
     if (target) {
@@ -66,7 +66,7 @@
     imgUploadPreview.style.filter = Filters[currentEffect](value);
   };
 
-  effectsField.addEventListener('change', onEffectChange);
+  effectsField.addEventListener('change', effectChangeHandler);
 
   window.effect = {
     change: changeSaturation,

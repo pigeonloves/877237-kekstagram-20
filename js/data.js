@@ -2,6 +2,7 @@
 
 (function () {
   var pictureFilter = document.querySelector('.img-filters');
+  var filterButtons = pictureFilter.querySelectorAll('.img-filters__button');
   var pictures = [];
   var onError = function (error) {
     window.message.error(error);
@@ -18,8 +19,6 @@
   };
 
   loadData();
-
-  var filterButtons = pictureFilter.querySelectorAll('.img-filters__button');
 
   var selectButton = function (button) {
     filterButtons.forEach(function (btn) {

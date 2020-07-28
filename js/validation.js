@@ -20,17 +20,17 @@
       return item !== '';
     });
 
-    for (var i = 0; i < splittedTags.length; i++) {
-      if (splittedTags[i][0] !== '#') {
+    splittedTags.forEach(function (tag) {
+      if (tag[0] !== '#') {
         tagErrors.push('Хештег должен начинаться с «#»!');
-      } else if (!tagSymbol.test(splittedTags[i])) {
+      } else if (!tagSymbol.test(tag)) {
         tagErrors.push('Хештег не должен содержать спецсимволы!');
-      } else if (splittedTags[i].length < TAG_MIN_LENGTH) {
+      } else if (tag.length < TAG_MIN_LENGTH) {
         tagErrors.push('Хештег должен состоять минимум из 2-х символов!');
-      } else if (splittedTags[i].length > TAG_MAX_LENGTH) {
+      } else if (tag.length > TAG_MAX_LENGTH) {
         tagErrors.push('Максимальная длина хештега не должна превышать 20 символов!');
       }
-    }
+    });
 
     if (splittedTags.some(isDublicate)) {
       tagErrors.push('Хештеги не должны повторяться!');
