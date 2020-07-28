@@ -1,11 +1,11 @@
 'use strict';
 
 (function () {
-
+  var MAX_LENGTH = 10;
   var filterRandom = function (data) {
     return data.sort(function () {
       return window.utils.getRandomInt(-1, 1);
-    }).slice(0, 10);
+    }).slice(0, MAX_LENGTH);
   };
   var filterComments = function (data) {
     return data.sort(function (a, b) {

@@ -1,10 +1,11 @@
 'use strict';
 
 (function () {
-  var picturesBlock = document.querySelector('.pictures');
   var pictureFilter = document.querySelector('.img-filters');
   var pictures = [];
-  var onError = function () {};
+  var onError = function (error) {
+    window.message.error(error);
+  };
 
   var onSuccess = function (data) {
     pictures = data;
@@ -40,14 +41,5 @@
   var filterClickHandler = window.utils.debounce(filterData);
 
   pictureFilter.addEventListener('click', filterClickHandler);
-
-  picturesBlock.addEventListener('click', function (evt) {
-
-    var picture = evt.target.closest('.picture');
-    if (picture) {
-      evt.preventDefault();
-      window.preview.show(pictures[picture.dataset.id]);
-    }
-  });
 
 })();

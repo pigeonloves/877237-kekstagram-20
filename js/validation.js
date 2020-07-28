@@ -1,11 +1,11 @@
 'use strict';
 
 (function () {
-  // Валидация хеш-тегов
   var TAG_MIN_LENGTH = 2;
   var TAG_MAX_LENGTH = 20;
-  var picturesBlock = document.querySelector('.pictures');
-  var tagInput = picturesBlock.querySelector('.text__hashtags');
+  var COMMENT_MAX_LENGTH = 140;
+  var tagInput = document.querySelector('.text__hashtags');
+  var commentInput = document.querySelector('.text__description');
 
   var isDublicate = function (item, index, arr) {
     return arr.indexOf(item, index + 1) >= 0;
@@ -43,10 +43,6 @@
     }
   });
 
-  // Валидация комментариев
-  var COMMENT_MAX_LENGTH = 140;
-  var commentInput = picturesBlock.querySelector('.text__description');
-
   commentInput.addEventListener('input', function () {
     var commentLength = commentInput.value.length;
 
@@ -56,10 +52,5 @@
       commentInput.setCustomValidity('');
     }
   });
-
-  window.validation = {
-    tagInput: tagInput,
-    commentInput: commentInput,
-  };
 
 })();

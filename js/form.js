@@ -1,14 +1,13 @@
 'use strict';
 
 (function () {
-  var ESC = 'Escape';
-  var tagInput = window.validation.tagInput;
-  var commentInput = window.validation.commentInput;
-  var picturesBlock = document.querySelector('.pictures');
-  var uploaderPicture = picturesBlock.querySelector('#upload-file');
-  var editorPicture = picturesBlock.querySelector('.img-upload__overlay');
-  var closeEditorPicture = picturesBlock.querySelector('#upload-cancel');
   var body = document.querySelector('body');
+  var tagInput = body.querySelector('.text__hashtags');
+  var commentInput = body.querySelector('.text__description');
+  var uploaderPicture = body.querySelector('#upload-file');
+  var editorPicture = body.querySelector('.img-upload__overlay');
+  var closeEditorPicture = body.querySelector('#upload-cancel');
+  var imgUploadForm = body.querySelector('.img-upload__form');
 
   var openPopup = function () {
     editorPicture.classList.remove('hidden');
@@ -20,11 +19,12 @@
     editorPicture.classList.add('hidden');
     body.classList.remove('modal-open');
     uploaderPicture.value = '';
+    window.effect.reset();
     document.removeEventListener('keydown', popupEscPressHandler);
   };
 
   var popupEscPressHandler = function (evt) {
-    if (evt.key === ESC && tagInput !== document.activeElement && commentInput !== document.activeElement) {
+    if (evt.key === window.constans.ESC && tagInput !== document.activeElement && commentInput !== document.activeElement) {
       evt.preventDefault();
       closePopup();
     }
@@ -36,6 +36,27 @@
 
   closeEditorPicture.addEventListener('click', function () {
     closePopup();
+  });
+
+  var resetForm = function () {
+    window.effect.reset();
+    imgUploadForm.reset();
+    closePopup();
+  };
+
+  var onError = function (error) {
+    resetForm();
+    window.message.error(error);
+  };
+
+  var onSuccess = function () {
+    resetForm();
+    window.message.success();
+  };
+
+  imgUploadForm.addEventListener('submit', function (evt) {
+    window.backend.upload(new FormData(imgUploadForm), onSuccess, onError);
+    evt.preventDefault();
   });
 
 })();

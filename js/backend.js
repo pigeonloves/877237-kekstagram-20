@@ -3,7 +3,7 @@
 (function () {
   var SUCCESS_STATUS_CODE = 200;
   var TIMEOUT = 10000;
-  var URL = 'https://javascript.pages.academy/kekstagram/data';
+  var URL = 'https://javascript.pages.academy/kekstagram';
   var messageOfError = {
     400: 'Неверный запрос',
     401: 'Пользователь не авторизирован',
@@ -39,11 +39,18 @@
 
   var load = function (onSuccess, onError) {
     var xhr = createRequest(onSuccess, onError);
-    xhr.open('GET', URL);
+    xhr.open('GET', URL + '/data');
     xhr.send();
+  };
+
+  var upload = function (data, onSuccess, onError) {
+    var xhr = createRequest(onSuccess, onError);
+    xhr.open('POST', URL);
+    xhr.send(data);
   };
 
   window.backend = {
     load: load,
+    upload: upload
   };
 })();

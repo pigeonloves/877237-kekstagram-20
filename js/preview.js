@@ -1,14 +1,16 @@
 'use strict';
 
 (function () {
+  var COMMENTS_LENGTH = 5;
   var body = document.querySelector('body');
   var bigPicture = document.querySelector('.big-picture');
   var bigPictureComments = bigPicture.querySelector('.social__comments');
   var bigPictureComment = bigPicture.querySelector('.social__comment');
   var bigPictureClose = bigPicture.querySelector('.big-picture__cancel');
+  var commentsLoader = bigPicture.querySelector('.comments-loader');
 
   bigPicture.querySelector('.social__comment-count').classList.add('hidden');
-  bigPicture.querySelector('.comments-loader').classList.add('hidden');
+  commentsLoader.classList.add('hidden');
 
   var renderComment = function (item) {
     var newComment = bigPictureComment.cloneNode(true);
@@ -18,12 +20,33 @@
     return newComment;
   };
 
+  var commentsLoaderHandler = function (comments, i) {
+    createComment(comments.slice(0, COMMENTS_LENGTH * i));
+  };
+
   var renderBigPicture = function (picture) {
     bigPicture.querySelector('.big-picture__img img').src = picture.url;
     bigPicture.querySelector('.likes-count').textContent = picture.likes;
-    bigPicture.querySelector('.comments-count').textContent = picture.comments.length;
     bigPicture.querySelector('.social__caption').textContent = picture.description;
-    createComment(picture.comments);
+    createComment(picture.comments.slice(0, COMMENTS_LENGTH));
+
+    if (picture.comments.length > COMMENTS_LENGTH) {
+      var countClick = Math.ceil(picture.comments.length / COMMENTS_LENGTH);
+      var index = 1;
+      bigPicture.querySelector('.comments-count').textContent = picture.comments.length;
+      bigPicture.querySelector('.social__comment-count').classList.remove('hidden');
+      commentsLoader.classList.remove('hidden');
+    }
+
+    commentsLoader.addEventListener('click', function () {
+      index++;
+      commentsLoaderHandler(picture.comments, index);
+
+      if (countClick === index) {
+        bigPicture.querySelector('.social__comment-count').classList.add('hidden');
+        commentsLoader.classList.add('hidden');
+      }
+    });
   };
 
   var createComment = function (comments) {
@@ -41,7 +64,7 @@
   };
 
   var escPressHandler = function (evt) {
-    if (evt.key === 'Escape') {
+    if (evt.key === window.constans.ESC) {
       evt.preventDefault();
       closePreview();
     }
