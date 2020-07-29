@@ -3,7 +3,7 @@
 (function () {
   var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
   var upload = document.querySelector('#upload-file');
-  var imagesPreview = document.querySelector('.img-upload__preview').querySelector('img');
+  var imagesPreview = document.querySelector('.img-upload__preview img');
 
   upload.addEventListener('change', function () {
     var file = upload.files[0];
