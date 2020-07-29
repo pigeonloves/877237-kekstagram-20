@@ -1,6 +1,10 @@
 'use strict';
 
 (function () {
+  var DefaultEffectValue = {
+    MIN: 0,
+    MAX: 100
+  };
   var MaxValueFilter = {
     CHROME: 1,
     SEPIA: 1,
@@ -53,10 +57,12 @@
     if (target) {
       if (target.value === 'none') {
         imgUploadEffectLevel.classList.add('hidden');
+        effectLevelValue.value = DefaultEffectValue.MIN;
       } else {
         imgUploadEffectLevel.classList.remove('hidden');
         effectLevelPin.style.left = 100 + '%';
         effectLevelDepth.style.width = 100 + '%';
+        effectLevelValue.value = DefaultEffectValue.MAX;
         currentEffect = target.value;
         imgUploadPreview.style.filter = filtersMap[currentEffect](MaxValueFilter[currentEffect.toUpperCase()]);
       }
