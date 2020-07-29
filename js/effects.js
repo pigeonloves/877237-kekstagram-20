@@ -1,12 +1,12 @@
 'use strict';
 
 (function () {
-  var MAX_VALUE_FILTERS = {
-    chrome: 1,
-    sepia: 1,
-    marvin: 100,
-    phobos: 3,
-    heat: 3
+  var MaxValueFilter = {
+    CHROME: 1,
+    SEPIA: 1,
+    MARVIN: 100,
+    PHOBOS: 3,
+    HEAT: 3
   };
   var picturesBlock = document.querySelector('.pictures');
   var effectLevelPin = picturesBlock.querySelector('.effect-level__pin');
@@ -16,9 +16,10 @@
   var imgUploadEffectLevel = picturesBlock.querySelector('.img-upload__effect-level');
   var effectsField = picturesBlock.querySelector('.img-upload__effects');
   var scaleControlValue = picturesBlock.querySelector('.scale__control--value');
+  var effectLevelValue = imgUploadEffectLevel.querySelector('.effect-level__value');
   var currentEffect = null;
 
-  var Filters = {
+  var filtersMap = {
     chrome: function (value) {
       return 'grayscale(' + value.toFixed(1) + ')';
     },
@@ -41,6 +42,7 @@
     imgUploadPreview.style.filter = '';
     imgUploadPreview.style.transform = '';
     scaleControlValue.value = 100 + '%';
+    effectLevelValue.value = '';
   };
 
   resetEffectsValue();
@@ -56,14 +58,16 @@
         effectLevelPin.style.left = 100 + '%';
         effectLevelDepth.style.width = 100 + '%';
         currentEffect = target.value;
-        imgUploadPreview.style.filter = Filters[currentEffect](MAX_VALUE_FILTERS[currentEffect]);
+        imgUploadPreview.style.filter = filtersMap[currentEffect](MaxValueFilter[currentEffect.toUpperCase()]);
       }
     }
   };
 
   var changeSaturation = function (currentCoord) {
-    var value = MAX_VALUE_FILTERS[currentEffect] * currentCoord / 100;
-    imgUploadPreview.style.filter = Filters[currentEffect](value);
+    var value = MaxValueFilter[currentEffect.toUpperCase()] * currentCoord / 100;
+    imgUploadPreview.style.filter = filtersMap[currentEffect](value);
+    // effectLevelValue.value = effectLevelPin.style.left;
+    // console.log(effectLevelValue.value);
   };
 
   effectsField.addEventListener('change', effectChangeHandler);
