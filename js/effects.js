@@ -66,8 +66,6 @@
   var changeSaturation = function (currentCoord) {
     var value = MaxValueFilter[currentEffect.toUpperCase()] * currentCoord / 100;
     imgUploadPreview.style.filter = filtersMap[currentEffect](value);
-    // effectLevelValue.value = effectLevelPin.style.left;
-    // console.log(effectLevelValue.value);
   };
 
   effectsField.addEventListener('change', effectChangeHandler);
